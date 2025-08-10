@@ -1,0 +1,31 @@
+plugins {
+    id 'java-library'
+}
+
+group = 'guru.qa'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation (
+            "org.junit.jupiter:junit-jupiter:5.11.0",
+            // https://mvnrepository.com/artifact/com.codeborne/selenide
+            "com.codeborne:selenide:7.9.3",
+            // https://mvnrepository.com/artifact/org.slf4j/slf4j-simple
+            'org.slf4j:slf4j-simple:2.0.17'
+    )
+    testImplementation platform(
+            'org.junit:junit-bom:5.10.0'
+    )
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+test {
+    useJUnitPlatform()
+}

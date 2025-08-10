@@ -1,3 +1,5 @@
+package lesson3;
+
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -25,9 +27,9 @@ public class SimpleUiTest {
         $("#permanentAddress").setValue("Amber Temple, Barovia");
         $("#submit").click();
 
-        $("#output").$("#name").shouldHave(text("Strahd von Zarovich"));
-        $("#output").$("#email").shouldHave(text("strahd@barovia.dom"));
-        $("#output").$("#currentAddress").shouldHave(text("Ravenloft, Barovia"));
-        $("#output").$("#permanentAddress").shouldHave(text("Amber Temple, Barovia"));
+        $("#output #name").shouldHave(text("Strahd von Zarovich"));
+        $("#output #email").shouldHave(text("strahd@barovia.dom"));
+        $("#output #currentAddress").shouldHave(text("Ravenloft, Barovia"));
+        $("#output #permanentAddress").shouldHave(text("Amber Temple, Barovia"));
     }
 }

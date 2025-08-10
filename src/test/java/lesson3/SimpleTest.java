@@ -1,3 +1,5 @@
+package lesson3;
+
 import org.junit.jupiter.api.*;
 
 public class SimpleTest {

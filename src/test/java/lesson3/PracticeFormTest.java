@@ -55,35 +55,18 @@ public class PracticeFormTest {
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
         $("#closeLargeModal").shouldBe(visible);
 
-        $(".table-responsive table").$("thead").shouldHave(
-                text("Label"),
-                text("Values")
-        );
+        $(".table-responsive").$("thead").shouldHave(text("Label"));
+        $(".table-responsive").$("thead").shouldHave(text("Values"));
 
-        $(".table-responsive table").$("tbody").shouldHave(
-                text("Student Name"),
-                text("Student Email"),
-                text("Gender"),
-                text("Mobile"),
-                text("Date of Birth"),
-                text("Subjects"),
-                text("Hobbies"),
-                text("Picture"),
-                text("Address"),
-                text("State and City")
-        );
-
-        $(".table-responsive table").$("tbody").shouldHave(
-                text("Strahd von Zarovich"),
-                text("strahd@barovia.dom"),
-                text("Male"),
-                text("8005553535"),
-                text("01 January,2000"),
-                text("Maths"),
-                text("Reading"),
-                text("knight.jpg"),
-                text("Barovia, Ravenloft Castle, Area K86 \"Strahd's Tomb\""),
-                text("NCR Delhi")
-        );
+        $(".table-responsive").$(byText("Student Name")).parent().shouldHave(text("Strahd von Zarovich"));
+        $(".table-responsive").$(byText("Student Email")).parent().shouldHave(text("strahd@barovia.dom"));
+        $(".table-responsive").$(byText("Gender")).parent().shouldHave(text("Male"));
+        $(".table-responsive").$(byText("Mobile")).parent().shouldHave(text("8005553535"));
+        $(".table-responsive").$(byText("Date of Birth")).parent().shouldHave(text("01 January,2000"));
+        $(".table-responsive").$(byText("Subjects")).parent().shouldHave(text("Maths"));
+        $(".table-responsive").$(byText("Hobbies")).parent().shouldHave(text("Reading"));
+        $(".table-responsive").$(byText("Picture")).parent().shouldHave(text("knight.jpg"));
+        $(".table-responsive").$(byText("Address")).parent().shouldHave(text("Barovia, Ravenloft Castle, Area K86 \"Strahd's Tomb\""));
+        $(".table-responsive").$(byText("State and City")).parent().shouldHave(text("NCR Delhi"));
     }
 }

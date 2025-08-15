@@ -20,7 +20,7 @@ public class HomeworkDragAndDropTest {
 
     @Test
     @DisplayName("Drag&Drop с помощью Selenide.actions()")
-    void dragAndDropWithActionsTest() throws InterruptedException {
+    void dragAndDropWithActionsTest() {
         open("/drag_and_drop");
         // Проверяем, что А находится перед В
         $("#column-a").shouldHave(text("A"));

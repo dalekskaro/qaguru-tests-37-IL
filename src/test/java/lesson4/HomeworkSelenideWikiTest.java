@@ -9,6 +9,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class HomeworkSelenideWikiTest {
+
     @BeforeAll
     static void setUp() {
         Configuration.browserSize = "1920x1080";
@@ -32,7 +33,19 @@ public class HomeworkSelenideWikiTest {
         $("#wiki-pages-box").$(byText("SoftAssertions")).click();
 
         // Проверьте что внутри есть пример кода для JUnit5
-        $(byText("3. Using JUnit5 extend test class:")).parent()
-                .sibling(0).shouldHave(text("@ExtendWith({SoftAssertsExtension.class})"));
+        String codeExample = """
+                @ExtendWith({SoftAssertsExtension.class})
+                class Tests {
+                  @Test
+                  void test() {
+                    Configuration.assertionMode = SOFT;
+                    open("page.html");
+                
+                    $("#first").should(visible).click();
+                    $("#second").should(visible).click();
+                  }
+                }
+                """;
+        $(byText("3. Using JUnit5 extend test class:")).parent().sibling(0).shouldHave(text(codeExample));
     }
 }

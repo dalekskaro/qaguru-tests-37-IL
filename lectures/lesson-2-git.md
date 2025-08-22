@@ -1,4 +1,4 @@
-## Урок 2: Git <a name="урок_2"></a>
+## Урок 2: Git
 [2. Git. Github. Погружаемся. Дмитрий Тучс](https://school.qa.guru/pl/teach/control/lesson/view?id=343208838&editMode=0)
 
 Увидеть локальные настройки:

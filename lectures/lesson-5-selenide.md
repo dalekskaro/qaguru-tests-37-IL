@@ -1,4 +1,4 @@
-## Урок 5: <a name="урок_5"></a>
+## Урок 5: Selenide #2
 [5. Selenide #2. Алексей Виноградов](https://school.qa.guru/pl/teach/control/lesson/view?id=343208842&editMode=0)
 
 

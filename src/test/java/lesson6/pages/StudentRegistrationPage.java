@@ -2,14 +2,14 @@ package lesson6.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import lesson6.pages.components.CalendarComponent;
-import lesson6.pages.components.ModalTable;
+import lesson6.pages.components.ModalTableComponent;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class StudentRegistrationPage {
     CalendarComponent calendarComponent = new CalendarComponent();
-    ModalTable modalTable = new ModalTable();
+    ModalTableComponent modalTableComponent = new ModalTableComponent();
 
     private final SelenideElement firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
@@ -134,19 +134,19 @@ public class StudentRegistrationPage {
     }
 
     public StudentRegistrationPage checkResultInSubmittingModalLabel(String value) {
-        modalTable.checkResultInSubmittingModalLabel(value);
+        modalTableComponent.checkResultInSubmittingModalLabel(value);
 
         return this;
     }
 
     public StudentRegistrationPage checkResultInSubmittingModalTableThead(String value) {
-        modalTable.checkResultInSubmittingModalTableThead(value);
+        modalTableComponent.checkResultInSubmittingModalTableThead(value);
 
         return this;
     }
 
     public StudentRegistrationPage checkResultInSubmittingModalTable(String label, String value) {
-        modalTable.checkDataInSubmittingModalTable(label, value);
+        modalTableComponent.checkDataInSubmittingModalTable(label, value);
 
         return this;
     }

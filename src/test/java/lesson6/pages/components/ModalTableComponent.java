@@ -6,7 +6,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 
-public class ModalTable {
+public class ModalTableComponent {
 
     SelenideElement submittingModalLabel = $("#example-modal-sizes-title-lg"),
             submittingModalTable = $(".table-responsive");

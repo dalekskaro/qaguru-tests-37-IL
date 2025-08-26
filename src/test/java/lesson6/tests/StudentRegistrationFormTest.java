@@ -1,9 +1,11 @@
 package lesson6.tests;
 
+import lesson6.pages.StudentRegistrationPage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class StudentRegistrationFormTest extends BaseTest {
+    StudentRegistrationPage studentRegistrationPage = new StudentRegistrationPage();
 
     @Test
     @DisplayName("Проверка заполнения всех полей на форме регистрации студента")

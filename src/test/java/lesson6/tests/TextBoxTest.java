@@ -1,9 +1,11 @@
 package lesson6.tests;
 
+import lesson6.pages.TextBoxPage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class TextBoxTest extends BaseTest {
+    TextBoxPage textBoxPage = new TextBoxPage();
 
     @Test
     @DisplayName("Проверка отправки формы на Text Box")

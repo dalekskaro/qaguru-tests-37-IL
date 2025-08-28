@@ -1,0 +1,18 @@
+## Урок 6: PageObjects
+
+[. Продолжаем разрабатывать автотесты. PageObjects. Станислав Васенков](https://school.qa.guru/pl/teach/control/lesson/view?id=343208845&editMode=0)
+
+1. Добавляем в код PageObjects
+2. Изучаем подходы – степовой, сценарный, dsl
+3. Добавляем PageComponents
+
+### Домашнее задание для урока 6:
+1. Возьмите ваш код написанный в рамках ДЗ для формы https://demoqa.com/automation-practice-form (java/lesson3/PracticeFormTest.java)
+
+Добавить еще как минимум 2 автотеста - проверку минимального количества данных и негативную проверку
+
+2. Добавьте в ваш код PageObjects / Components, в тестовом классе не должно остаться локаторов
+
+(Таблицу с результатами введенных данных тоже вынести в components)
+
+3. Добавьте PageObjects к автотесту на TextBoxTests

@@ -9,9 +9,9 @@ public class FileClean {
 
         if (folder.exists() && folder.isDirectory()) {
             deleteRecursively(folder);
-            System.out.println("Папка tmp очищена и удалена.");
+            System.out.println("##### The tmp folder has been cleared and deleted");
         } else {
-            System.out.println("Папка tmp не найдена.");
+            System.out.println("##### Folder tmp not found");
         }
     }
 
@@ -23,7 +23,7 @@ public class FileClean {
         }
         boolean deleted = file.delete();
         if (!deleted) {
-            System.out.println("Не удалось удалить: " + file.getAbsolutePath());
+            System.out.println("##### Failed to delete: " + file.getAbsolutePath());
         }
     }
 }

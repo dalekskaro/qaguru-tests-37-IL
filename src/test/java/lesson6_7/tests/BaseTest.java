@@ -1,12 +1,13 @@
-package lesson6.tests;
+package lesson6_7.tests;
 
 import com.codeborne.selenide.Configuration;
+import lesson6_7.utils.FileClean;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
-public class BaseTest {
+public abstract class BaseTest {
 
     @BeforeAll
     static void setUpBrowser() {
@@ -18,5 +19,10 @@ public class BaseTest {
     @AfterEach
     void closeBrowserDriver() {
         closeWebDriver();
+    }
+
+    @AfterEach
+    void cleanUpTmpFolder() {
+        FileClean.cleanTmpFolder();
     }
 }

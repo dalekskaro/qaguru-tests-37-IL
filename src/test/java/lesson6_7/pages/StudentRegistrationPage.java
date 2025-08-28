@@ -1,8 +1,15 @@
-package lesson6.pages;
+package lesson6_7.pages;
 
 import com.codeborne.selenide.SelenideElement;
-import lesson6.pages.components.CalendarComponent;
-import lesson6.pages.components.ModalTableComponent;
+import lesson6_7.pages.components.CalendarComponent;
+import lesson6_7.pages.components.ModalTableComponent;
+import lesson6_7.utils.DateUtils;
+import lesson6_7.utils.DayOfMonthAndYear;
+import lesson6_7.utils.FileCreator;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -10,10 +17,12 @@ import static com.codeborne.selenide.Selenide.*;
 public class StudentRegistrationPage {
     CalendarComponent calendarComponent = new CalendarComponent();
     ModalTableComponent modalTableComponent = new ModalTableComponent();
+    DateUtils dateUtils = new DateUtils();
 
     private final SelenideElement firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             emailInput = $("#userEmail"),
+            genderWrapper = $("#genterWrapper"),
             genderMaleRadio = $("#genterWrapper").$(byText("Male")),
             genderFemaleRadio = $("#genterWrapper").$(byText("Female")),
             genderOtherRadio = $("#genterWrapper").$(byText("Other")),
@@ -58,20 +67,8 @@ public class StudentRegistrationPage {
         return this;
     }
 
-    public StudentRegistrationPage selectMaleGender() {
-        genderMaleRadio.click();
-
-        return this;
-    }
-
-    public StudentRegistrationPage selectFemaleGender() {
-        genderFemaleRadio.click();
-
-        return this;
-    }
-
-    public StudentRegistrationPage selectOtherGender() {
-        genderOtherRadio.click();
+    public StudentRegistrationPage selectGender(String value) {
+        genderWrapper.$(byText(value)).click();
 
         return this;
     }
@@ -82,9 +79,11 @@ public class StudentRegistrationPage {
         return this;
     }
 
-    public StudentRegistrationPage setDateOfBirth(String day, String month, String year) {
+    public StudentRegistrationPage setDateOfBirth(Date date) {
+        DayOfMonthAndYear dayOfMonthAndYear = dateUtils.dateTranslation(date);
+
         dateOfBirthInput.click();
-        calendarComponent.setDate(day, month, year);
+        calendarComponent.setDate(dayOfMonthAndYear.getDay(), dayOfMonthAndYear.getMonth(), dayOfMonthAndYear.getYear());
 
         return this;
     }
@@ -101,8 +100,9 @@ public class StudentRegistrationPage {
         return this;
     }
 
-    public StudentRegistrationPage uploadPicture(String file) {
-        uploadPictureButton.uploadFromClasspath(file);
+    public StudentRegistrationPage uploadPicture(String fileName) throws IOException {
+        File file = FileCreator.pngCreator(fileName);
+        uploadPictureButton.uploadFile(file);
 
         return this;
     }
@@ -147,6 +147,15 @@ public class StudentRegistrationPage {
 
     public StudentRegistrationPage checkResultInSubmittingModalTable(String label, String value) {
         modalTableComponent.checkDataInSubmittingModalTable(label, value);
+
+        return this;
+    }
+
+    public StudentRegistrationPage checkResultDateInSubmittingModalTable(String label, Date date) {
+            DayOfMonthAndYear dayOfMonthAndYear = dateUtils.dateTranslation(date);
+
+        modalTableComponent.checkDataDateInSubmittingModalTable(label,
+                dayOfMonthAndYear.getDay() + " " + dayOfMonthAndYear.getMonth() + "," + dayOfMonthAndYear.getYear());
 
         return this;
     }

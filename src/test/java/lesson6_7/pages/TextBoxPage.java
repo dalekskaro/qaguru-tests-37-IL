@@ -1,7 +1,7 @@
-package lesson6.pages;
+package lesson6_7.pages;
 
 import com.codeborne.selenide.SelenideElement;
-import lesson6.pages.components.OutputComponent;
+import lesson6_7.pages.components.OutputComponent;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$;

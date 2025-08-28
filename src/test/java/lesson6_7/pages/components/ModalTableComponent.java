@@ -1,4 +1,4 @@
-package lesson6.pages.components;
+package lesson6_7.pages.components;
 
 import com.codeborne.selenide.SelenideElement;
 
@@ -21,5 +21,9 @@ public class ModalTableComponent {
 
     public void checkResultInSubmittingModalTableThead(String value) {
         submittingModalTable.$("thead").shouldHave(text(value));
+    }
+
+    public void checkDataDateInSubmittingModalTable(String label, String date){
+        submittingModalTable.$(byText(label)).parent().shouldHave(text(date));
     }
 }

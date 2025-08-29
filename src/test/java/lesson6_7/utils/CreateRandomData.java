@@ -3,7 +3,6 @@ package lesson6_7.utils;
 import com.github.javafaker.Faker;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.Locale;
 
 public class CreateRandomData {
@@ -29,8 +28,17 @@ public class CreateRandomData {
         return faker.number().digits(10);
     }
 
-    public static Date getBirthday() {
-        return faker.date().birthday(1, 60);
+    public static String getDayAsString() {
+        return String.format("%s", faker.number().numberBetween(10, 28));
+    }
+
+    public static String getMonthAsString() {
+        return faker.options().option("January", "February", "March", "April",
+                "May", "June", "July", "August", "September", "October", "November", "December");
+    }
+
+    public static String getYearAsString() {
+        return String.format("%s", faker.number().numberBetween(1920, 2024));
     }
 
     public static String getSubject() throws IOException {

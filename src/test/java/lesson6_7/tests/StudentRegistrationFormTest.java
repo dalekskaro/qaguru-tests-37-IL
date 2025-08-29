@@ -5,7 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.Date;
 
 import static lesson6_7.utils.CreateRandomData.*;
 
@@ -18,14 +17,15 @@ public class StudentRegistrationFormTest extends BaseTest {
             email = getEmail(),
             gender = getGender(),
             mobileNumber = getMobileNumber(),
+            day = getDayAsString(),
+            month = getMonthAsString(),
+            year = getYearAsString(),
             subject = getSubject(),
             hobbies = getHobbies(),
             picture = getPicture(),
             address = getAddress(),
             state = getState(),
             city = getCity(state);
-
-    Date date = getBirthday();
 
     public StudentRegistrationFormTest() throws IOException {
     }
@@ -40,7 +40,7 @@ public class StudentRegistrationFormTest extends BaseTest {
                 .setEmail(email)
                 .selectGender(gender)
                 .setMobileNumber(mobileNumber)
-                .setDateOfBirth(date)
+                .setDateOfBirth(day, month, year)
                 .setSubjects(subject)
                 .selectHobbies(hobbies)
                 .uploadPicture(picture)
@@ -56,7 +56,7 @@ public class StudentRegistrationFormTest extends BaseTest {
                 .checkResultInSubmittingModalTable("Student Email", email)
                 .checkResultInSubmittingModalTable("Gender", gender)
                 .checkResultInSubmittingModalTable("Mobile", mobileNumber)
-                .checkResultDateInSubmittingModalTable("Date of Birth", date)
+                .checkResultInSubmittingModalTable("Date of Birth", day + " " + month + "," + year)
                 .checkResultInSubmittingModalTable("Subjects", subject)
                 .checkResultInSubmittingModalTable("Hobbies", hobbies)
                 .checkResultInSubmittingModalTable("Picture", picture)

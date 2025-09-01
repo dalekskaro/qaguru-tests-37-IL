@@ -1,0 +1,12 @@
+package lesson8.data;
+
+public enum Language {
+    RU("ЧТО ТАКОЕ SELENIDE?"),
+    EN("WHAT IS SELENIDE?");
+
+    public final String description;
+
+    Language(String description) {
+        this.description = description;
+    }
+}

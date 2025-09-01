@@ -28,3 +28,23 @@ tasks.withType(JavaCompile) {
 test {
     useJUnitPlatform()
 }
+
+tasks.register('smoke', Test) {
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+        exceptionFormat "full"
+    }
+    useJUnitPlatform {
+        includeTags("smoke")
+    }
+}
+
+tasks.register('regress', Test) {
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+        exceptionFormat "full"
+    }
+    useJUnitPlatform {
+        includeTags("regress")
+    }
+}

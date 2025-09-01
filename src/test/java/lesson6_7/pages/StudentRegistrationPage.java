@@ -1,8 +1,12 @@
-package lesson6.pages;
+package lesson6_7.pages;
 
 import com.codeborne.selenide.SelenideElement;
-import lesson6.pages.components.CalendarComponent;
-import lesson6.pages.components.ModalTableComponent;
+import lesson6_7.pages.components.CalendarComponent;
+import lesson6_7.pages.components.ModalTableComponent;
+import lesson6_7.utils.FileCreator;
+
+import java.io.File;
+import java.io.IOException;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -14,6 +18,7 @@ public class StudentRegistrationPage {
     private final SelenideElement firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             emailInput = $("#userEmail"),
+            genderWrapper = $("#genterWrapper"),
             genderMaleRadio = $("#genterWrapper").$(byText("Male")),
             genderFemaleRadio = $("#genterWrapper").$(byText("Female")),
             genderOtherRadio = $("#genterWrapper").$(byText("Other")),
@@ -58,20 +63,8 @@ public class StudentRegistrationPage {
         return this;
     }
 
-    public StudentRegistrationPage selectMaleGender() {
-        genderMaleRadio.click();
-
-        return this;
-    }
-
-    public StudentRegistrationPage selectFemaleGender() {
-        genderFemaleRadio.click();
-
-        return this;
-    }
-
-    public StudentRegistrationPage selectOtherGender() {
-        genderOtherRadio.click();
+    public StudentRegistrationPage selectGender(String value) {
+        genderWrapper.$(byText(value)).click();
 
         return this;
     }
@@ -82,12 +75,13 @@ public class StudentRegistrationPage {
         return this;
     }
 
-    public StudentRegistrationPage setDateOfBirth(String day, String month, String year) {
+        public StudentRegistrationPage setDateOfBirth(String day, String month, String year) {
         dateOfBirthInput.click();
         calendarComponent.setDate(day, month, year);
 
         return this;
     }
+
 
     public StudentRegistrationPage setSubjects(String value) {
         subjectsInput.setValue(value).pressEnter();
@@ -101,8 +95,9 @@ public class StudentRegistrationPage {
         return this;
     }
 
-    public StudentRegistrationPage uploadPicture(String file) {
-        uploadPictureButton.uploadFromClasspath(file);
+    public StudentRegistrationPage uploadPicture(String fileName) throws IOException {
+        File file = FileCreator.pngCreator(fileName);
+        uploadPictureButton.uploadFile(file);
 
         return this;
     }

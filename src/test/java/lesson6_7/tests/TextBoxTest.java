@@ -1,6 +1,6 @@
-package lesson6.tests;
+package lesson6_7.tests;
 
-import lesson6.pages.TextBoxPage;
+import lesson6_7.pages.TextBoxPage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

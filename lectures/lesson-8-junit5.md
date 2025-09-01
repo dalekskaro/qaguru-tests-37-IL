@@ -44,25 +44,60 @@ void testName(Strimg value) //сюда подтянится значение п�
 @ParameterizedTest(name = "Для поискового запроса {0} в первой карточке должна быть ссылка {1}")
 void searchResultsShouldContainExpectedUrl(String searchQuery, String expectedLink)
 ```
-**@CsvFileSourc - задчем значения в файле**
+**@CsvFileSource - задаем значения в файле**
 ```java
 @CsvFileSource(resources = "путь до ресурса")
 @ParameterizedTest(name = "Для поискового запроса {0} в первой карточке должна быть ссылка {1}")
 void searchResultsShouldContainExpectedUrl(String searchQuery, String expectedLink)
 ```
-
-### Enum
+**@EnumSource - из enum значений**
 ```java
-public enum Language {
-RU("ЧТО ТАКОЕ SELENIDE?"),
-EN("WHAT IS SELENIDE?");
+enum Direction {
+    EAST, WEST, NORTH, SOUTH
+}
 
-public final String description;
-
-Language(String description) {
-this.description = description;
+@ParameterizedTest
+@EnumSource(Direction.class)
+void testWithEnumSource(Direction d) {
+    assertNotNull(d);
 }
 ```
+**@MethodSource - ссылка на метод**
+- Она используется для ссылки на один или несколько фабричных методов тестового класса или внешних классов. Фабричный метод должен генерировать поток аргументов, где каждый аргумент в потоке будет использоваться методом, аннотированным @ParameterizedTest.
+- Фабричный метод должен быть static, если тестовый класс не аннотирован с помощью @TestInstance(Lifecycle.PER_CLASS).
+- Кроме того, фабричный метод не должен принимать аргументы.
+```java
+@ParameterizedTest
+@MethodSource("argsProviderFactory")
+void testWithMethodSource(String argument) {
+    assertNotNull(argument);
+}
+
+static Stream<String> argsProviderFactory() {
+    return Stream.of("alex", "brian");
+}
+```
+**@ArgumentsSource - многоразовый поставщик аргументов**
+Аннотацию @ArgumentsSource можно использовать для указания настраиваемого многоразового поставщика аргументов ArgumentsProvider.
+```java
+@ParameterizedTest(name = "{index} - {0} is older than 40")
+@ArgumentsSource(EmployeesArgumentsProvider.class)
+void isEmployeeAgeGreaterThan40(Employee e) {
+    assertTrue(Period.between(e.getDob(), LocalDate.now()).get(ChronoUnit.YEARS) > 40);
+}
+
+class EmployeesArgumentsProvider implements ArgumentsProvider {
+    @Override
+    public Stream<? extends Arguments> provideArguments(ExtensionContext context) {
+        return Stream.of(
+                Arguments.of(new Employee(1, "Alex", LocalDate.of(1980, 2, 3))),
+                Arguments.of(new Employee(2, "Brian", LocalDate.of(1979, 2, 3))),
+                Arguments.of(new Employee(3, "Charles", LocalDate.of(1978, 2, 3)))
+        );
+    }
+}
+```
+
 ### Дополнительно:
 Информация взята из статьи [Gradle для тестировщика](https://software-testing.ru/library/testing/testing-tools/4079-gradle-)
 Повысить уровень логирования можно добавить строки ниже и `build.gradle`

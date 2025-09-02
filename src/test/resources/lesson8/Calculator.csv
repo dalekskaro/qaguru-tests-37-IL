@@ -1,0 +1,6 @@
+﻿firstNumber,secondNumber,operation,answer
+987,1234,Add,2221
+7654,1020,Subtract,6634
+11,12,Multiply,132
+132,11,Divide,12
+000,111,Concatenate,000111

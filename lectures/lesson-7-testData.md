@@ -13,7 +13,6 @@ userEmail=strahd@barovia.dom
 
 [JavaFaker](https://github.com/DiUS/java-faker)
 
-
 ### Домашнее задание для урока 7:
 1. Возьмите ваш код написанный в рамках ДЗ для формы https://demoqa.com/automation-practice-form (c PageObjects)
 

@@ -1,6 +1,6 @@
 ## Урок 6: PageObjects
 
-[. Продолжаем разрабатывать автотесты. PageObjects. Станислав Васенков](https://school.qa.guru/pl/teach/control/lesson/view?id=343208845&editMode=0)
+[6. Продолжаем разрабатывать автотесты. PageObjects. Станислав Васенков](https://school.qa.guru/pl/teach/control/lesson/view?id=343208845&editMode=0)
 
 1. Добавляем в код PageObjects
 2. Изучаем подходы – степовой, сценарный, dsl

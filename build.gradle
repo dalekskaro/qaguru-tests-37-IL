@@ -20,9 +20,9 @@ dependencies {
             'org.apache.poi:poi-ooxml:5.4.1',
             'com.opencsv:opencsv:5.12.0',
             'com.google.code.gson:gson:2.13.1',
-            'com.fasterxml.jackson.core:jackson-core:2.19.0'
+            'com.fasterxml.jackson.core:jackson-core:2.19.0',
+            'com.fasterxml.jackson.core:jackson-databind:2.19.0'
     )
-
     testImplementation ('com.codeborne:xls-test:1.7.2') {
                 exclude(group: 'org.apache.poi', module: 'poi')
                 exclude(group: 'org.apache.poi', module: 'poi-ooxml')
@@ -48,5 +48,15 @@ tasks.register('homework-8', Test) {
     }
     useJUnitPlatform {
         includeTags("homework-8")
+    }
+}
+
+tasks.register('homework-9', Test) {
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+        exceptionFormat "full"
+    }
+    useJUnitPlatform {
+        includeTags("homework-9")
     }
 }

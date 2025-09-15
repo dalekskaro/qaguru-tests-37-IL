@@ -3,12 +3,17 @@ package lesson9.tests;
 import com.codeborne.pdftest.PDF;
 import com.codeborne.xlstest.XLS;
 import com.opencsv.CSVReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.List;
+import lesson9.utils.ZipUtils;
 import org.junit.jupiter.api.Assertions;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -25,6 +30,20 @@ public class HomeworkZipTest {
   private final ClassLoader classLoader = getClass().getClassLoader();
   String zipFile = "HungerGames.zip";
 
+
+  @Test
+  @DisplayName("Проверка, что созданный файл пуст")
+  void emptyZipTest() throws IOException {
+    ZipUtils zipUtils = new ZipUtils();
+
+    File zipFile = new File(zipUtils.createEmptyZip("Empty"));
+    assertTrue(zipFile.exists(), "Файл '" + zipFile + "' не найден");
+
+    try (ZipInputStream zipInputStream = new ZipInputStream(new FileInputStream(zipFile))) {
+      assertNull(zipInputStream.getNextEntry(), "Файл '" + zipFile + "' не пуст");
+    }
+  }
+
   @Test
   @Tag("homework-9")
   @DisplayName("Проверка текста в файле типа pdf, который находится в zip-архиве")
@@ -37,6 +56,8 @@ public class HomeworkZipTest {
     try (ZipInputStream zipInputStream = new ZipInputStream(inputStream)) {
 
       ZipEntry entry;
+
+      assertNotNull(zipInputStream.getNextEntry(), "Файл '" + zipFile + "' пуст");
 
       while ((entry = zipInputStream.getNextEntry()) != null) {
         String fileInZipName = entry.getName();
@@ -69,6 +90,8 @@ public class HomeworkZipTest {
     try (ZipInputStream zipInputStream = new ZipInputStream(inputStream)) {
 
       ZipEntry entry;
+
+      assertNotNull(zipInputStream.getNextEntry(), "Файл '" + zipFile + "' пуст");
 
       while ((entry = zipInputStream.getNextEntry()) != null) {
         String fileInZipName = entry.getName();
@@ -105,9 +128,11 @@ public class HomeworkZipTest {
 
     assertNotNull(inputStream, "Файл '" + zipFile + "' не найден в ресурсах");
 
-      try (ZipInputStream zipInputStream = new ZipInputStream(inputStream)) {
+    try (ZipInputStream zipInputStream = new ZipInputStream(inputStream)) {
 
       ZipEntry entry;
+
+      assertNotNull(zipInputStream.getNextEntry(), "Файл '" + zipFile + "' пуст");
 
       while ((entry = zipInputStream.getNextEntry()) != null) {
         String fileInZipName = entry.getName();
@@ -123,7 +148,7 @@ public class HomeworkZipTest {
         Assertions.assertEquals(4, data.size(),
             "В файле '" + fileInZipName + "' количество строк не равно 4");
         Assertions.assertArrayEquals(new String[]{district, industry, population}, data.get(row),
-            "В файле '" + fileInZipName +"' в строке " + row + " данные не совпадают");
+            "В файле '" + fileInZipName + "' в строке " + row + " данные не совпадают");
       }
     }
   }

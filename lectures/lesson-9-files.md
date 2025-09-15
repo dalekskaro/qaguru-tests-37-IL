@@ -1,7 +1,5 @@
 ## Урок 9: Работа с файлами
 
-[9. Работаем с файлами. Дмитрий Тучс](https://school.qa.guru/pl/teach/control/lesson/view?id=343208849&editMode=0)
-
 1. Как скачать и прочитать файл
 2. Проверяем контент в .txt, .pdf, .xls/.xlsx, .doc/.docx, .zip
 

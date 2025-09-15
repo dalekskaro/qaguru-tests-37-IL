@@ -1,5 +1,4 @@
 ## Урок 4: Selenide #1
-[4. Selenide #1. Алексей Виноградов](https://school.qa.guru/pl/teach/control/lesson/view?id=343208841&editMode=0)
 
 1. DOM для начинающих (запись)
 2. Лайвкодинг – простые тесты для GitHub

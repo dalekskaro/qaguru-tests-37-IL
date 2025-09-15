@@ -1,6 +1,4 @@
 ## Урок 5: Selenide #2
-[5. Selenide #2. Алексей Виноградов](https://school.qa.guru/pl/teach/control/lesson/view?id=343208842&editMode=0)
-
 
 ### Домашнее задание для урока 5:
 #### 1. GitHub -> Solutions -> Enterprize

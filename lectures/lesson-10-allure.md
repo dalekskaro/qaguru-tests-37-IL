@@ -68,3 +68,19 @@ step("описание шага", new Allure.ThrowableContextRunnableVoid<Allure
   }
 });
 ```
+
+#### Вложения
+`@Attachment` - всегда должен возвращать байты
+
+#### Прочие аннотации
+- `@Description` - описание кейса/шага
+- `@Epic`/`@Epics` — группирует тесты по эпикам  
+  `@Epics` — массив эпиков: `@Epics(value = {@Epic(value = "раз"), @Epic(value = "два")})`
+- `@Feature`/`@Features` — группирует тесты по проверяемому функционалу
+- `@Story`/`@Stories` — группирует тесты по User story
+- `@Flaky` - для нестабильных тестов
+- `@Issue`/`@Issues` - линк автотеста с issue
+- `@TmsLink`/`@TmsLinks` - добавление ссылок на дефект/тест-кейс в allure-отчет
+- `@Link`/`@Links` - ссылка на внешний ресурс
+- `@Owner` - кто ответственен за тест
+- `@Severity` - критичность функционала. Может быть: BLOCKER, CRITICAL, NORMAL, MINOR или TRIVIAL.

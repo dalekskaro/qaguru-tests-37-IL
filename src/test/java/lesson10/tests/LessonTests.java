@@ -4,10 +4,20 @@ import static com.codeborne.selenide.Condition.text;
 import com.codeborne.selenide.Configuration;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.webdriver;
+import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.Allure;
+import static io.qameta.allure.Allure.attachment;
 import static io.qameta.allure.Allure.step;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Link;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import io.qameta.allure.selenide.AllureSelenide;
-import lesson10.pages.TextBoxPage;
+import java.nio.charset.StandardCharsets;
 import lesson10.pages.WebSteps;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -31,6 +41,7 @@ public class LessonTests {
 
     step("Открываем страницу " + URL, () -> {
       open(URL);
+      attachment("Source", webdriver().driver().source());
     });
 
     step("Заполняем поля данными", () -> {
@@ -63,22 +74,56 @@ public class LessonTests {
     steps.checkName(NAME);
   }
 
-  @DisplayName("Тут не добавлены степы, смотри степы выше")
   @Test
-  void annotation1Test() {
-    TextBoxPage textBoxPage = new TextBoxPage();
+  public void lambdaAttachmentsTest() {
+    SelenideLogger.addListener("allure", new AllureSelenide());
 
-    textBoxPage.openPage()
-        .removeAdd()
-        .setFullName("Sirius Black")
-        .setEmail("atyd@hogwarts.owl")
-        .setCurrentAddress("Gryffindor")
-        .setPermanentAddress("Azkaban")
-        .clickOnSubmitButton();
+    step("Открываем страницу " + URL, () -> {
+      open(URL);
+    });
 
-    textBoxPage.checkOutputValueName("Sirius Black")
-        .checkOutputValueEmail("atyd@hogwarts.owl")
-        .checkOutputValueCurrentAddress("Gryffindor")
-        .checkOutputValuePermananetAddress("Azkaban");
+    step("Достаем source страницы", () -> {
+      attachment("Source", webdriver().driver().source());
+    });
+
+    step("Достаем снапшот страницы", () -> {
+      Allure.getLifecycle().addAttachment(
+          "Исходники страницы",
+          "text/html",
+          "html",
+          WebDriverRunner.getWebDriver().getPageSource().getBytes(StandardCharsets.UTF_8)
+      );
+    });
+  }
+
+  @Test
+  public void annotationAttachmentsTest() {
+    SelenideLogger.addListener("allure", new AllureSelenide());
+    WebSteps steps = new WebSteps();
+
+    steps.openTextBox(URL);
+    steps.takeScreenshot();
+  }
+
+  @Test
+  @Feature("Форма Test Box")
+  @Story("Заполнение формы")
+  @Owner("attano")
+  @Severity(SeverityLevel.BLOCKER)
+  @Link(value = "Testing", url = "https://demoqa.com/text-box")
+  @DisplayName("да вы посмотрите на эти аннотации")
+  public void staticLabelsTest() {
+  }
+
+  @Test
+  public void dynamicLabelsTest() {
+    Allure.getLifecycle().updateTestCase(
+        t -> t.setName("да вы посмотрите на эти аннотации")
+    );
+    Allure.feature("Форма Test Box");
+    Allure.story("Заполнение формы");
+    Allure.label("owner", "attano");
+    Allure.label("severity", SeverityLevel.CRITICAL.value());
+    Allure.link("Testing", "https://demoqa.com/text-box");
   }
 }

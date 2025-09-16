@@ -10,6 +10,7 @@ import io.qameta.allure.selenide.AllureSelenide;
 import lesson10.pages.TextBoxPage;
 import lesson10.pages.WebSteps;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LessonTests {
@@ -62,6 +63,7 @@ public class LessonTests {
     steps.checkName(NAME);
   }
 
+  @DisplayName("Тут не добавлены степы, смотри степы выше")
   @Test
   void annotation1Test() {
     TextBoxPage textBoxPage = new TextBoxPage();

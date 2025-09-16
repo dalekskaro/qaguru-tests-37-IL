@@ -12,6 +12,7 @@ import java.nio.charset.Charset;
 import java.util.List;
 import lesson9.utils.ZipUtils;
 import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import org.junit.jupiter.api.DisplayName;
@@ -57,7 +58,9 @@ public class HomeworkZipTest {
 
       ZipEntry entry;
 
-      assertNotNull(zipInputStream.getNextEntry(), "Файл '" + zipFile + "' пуст");
+      boolean isZipEmpty = zipInputStream.getNextEntry() == null;
+
+      assertFalse(isZipEmpty,"Файл '" + zipFile + "' пуст");
 
       while ((entry = zipInputStream.getNextEntry()) != null) {
         String fileInZipName = entry.getName();
@@ -91,7 +94,9 @@ public class HomeworkZipTest {
 
       ZipEntry entry;
 
-      assertNotNull(zipInputStream.getNextEntry(), "Файл '" + zipFile + "' пуст");
+      boolean isZipEmpty = zipInputStream.getNextEntry() == null;
+
+      assertFalse(isZipEmpty,"Файл '" + zipFile + "' пуст");
 
       while ((entry = zipInputStream.getNextEntry()) != null) {
         String fileInZipName = entry.getName();
@@ -132,7 +137,9 @@ public class HomeworkZipTest {
 
       ZipEntry entry;
 
-      assertNotNull(zipInputStream.getNextEntry(), "Файл '" + zipFile + "' пуст");
+      boolean isZipEmpty = zipInputStream.getNextEntry() == null;
+
+      assertFalse(isZipEmpty,"Файл '" + zipFile + "' пуст");
 
       while ((entry = zipInputStream.getNextEntry()) != null) {
         String fileInZipName = entry.getName();

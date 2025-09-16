@@ -41,6 +41,7 @@ tasks.withType(JavaCompile) {
 
 test {
     useJUnitPlatform()
+    systemProperties(System.getProperties())
 }
 
 allure {
@@ -74,5 +75,15 @@ tasks.register('homework-9', Test) {
     }
     useJUnitPlatform {
         includeTags("homework-9")
+    }
+}
+
+tasks.register('homework-10', Test) {
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+        exceptionFormat "full"
+    }
+    useJUnitPlatform {
+        includeTags("homework-10")
     }
 }

@@ -11,7 +11,6 @@
 
 ---
 ## Урок 2: Git
-[2. Git. Github. Погружаемся. Дмитрий Тучс](https://school.qa.guru/pl/teach/control/lesson/view?id=343208838&editMode=0)
 
 Увидеть локальные настройки:
 ```html
@@ -98,7 +97,7 @@ git pull
 
 ---
 ## Урок 3: 
-[3. Погружаемся в инструментарий и библиотеки. Станислав Васенков и Дмитрий Тучс](https://school.qa.guru/pl/teach/control/lesson/view?id=343208839&editMode=0)
+
 ### Домашнее задание для урока 3:
 Разработайте один автотест на проверку формы https://demoqa.com/automation-practice-form
 - Необходимо **заполнить все поля формы** (input, textarea, загрузка картинки и тд), а не только обязательные.
@@ -165,7 +164,6 @@ $(byText("Delhi")).click();
 
 ---
 ## Урок 4: Selenide #1
-[4. Selenide #1. Алексей Виноградов](https://school.qa.guru/pl/teach/control/lesson/view?id=343208841&editMode=0)
 
 1. DOM для начинающих (запись)
 2. Лайвкодинг – простые тесты для GitHub
@@ -234,7 +232,6 @@ $("div").$("h1").should(appear);
 
 ---
 ## Урок 5: Selenide #2
-[5. Selenide #2. Алексей Виноградов](https://school.qa.guru/pl/teach/control/lesson/view?id=343208842&editMode=0)
 
 ### Домашнее задание для урока 5:
 #### 1. GitHub -> Solutions -> Enterprize
@@ -250,8 +247,6 @@ $("div").$("h1").should(appear);
 
 ---
 ## Урок 6: Дополнительное занятие. Основы Java. Часть I. Дмитрий Тучс
-
-[Дополнительное занятие. Основы Java. Часть I. Дмитрий Тучс](https://school.qa.guru/pl/teach/control/lesson/view?id=343208844&editMode=0)
 
 В занятии разберем:
 
@@ -406,8 +401,6 @@ for (byte i = 1; i <= 200; i++) {
 ---
 ## Урок 6: PageObjects
 
-[. Продолжаем разрабатывать автотесты. PageObjects. Станислав Васенков](https://school.qa.guru/pl/teach/control/lesson/view?id=343208845&editMode=0)
-
 1. Добавляем в код PageObjects
 2. Изучаем подходы – степовой, сценарный, dsl
 3. Добавляем PageComponents
@@ -425,7 +418,6 @@ for (byte i = 1; i <= 200; i++) {
 
 ---
 ## Урок 7: Генерация тестовых данных
-[7. Продолжаем разрабатывать автотесты. Генерация тестовых данных. Станислав Васенков](https://school.qa.guru/pl/teach/control/lesson/view?id=343208846&editMode=0)
 
 1. Генерим рандомные значения, используя встроенные библиотеки
 2. Используем JavaFaker
@@ -445,7 +437,6 @@ userEmail=strahd@barovia.dom
 
 ---
 ## Урок 8: JUnit 5. Аннотации
-[8. JUnit 5. Дмитрий Тучс](https://school.qa.guru/pl/teach/control/lesson/view?id=343208848&editMode=0)
 1. Аннотация @Test
 2. Что из себя представляют аннотации в Java
 3. Пишем свою простейшую реализацию JUnit5
@@ -586,7 +577,6 @@ tasks.register('regress', Test) {
 
 ---
 ## Урок 9: Работа с файлами
-[9. Работаем с файлами. Дмитрий Тучс](https://school.qa.guru/pl/teach/control/lesson/view?id=343208849&editMode=0)
 1. Как скачать и прочитать файл
 2. Проверяем контент в .txt, .pdf, .xls/.xlsx, .doc/.docx, .zip
 

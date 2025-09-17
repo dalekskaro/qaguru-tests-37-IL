@@ -1,4 +1,4 @@
-package lesson6_7.utils;
+package lesson6_7_11l9.utils;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

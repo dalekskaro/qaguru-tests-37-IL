@@ -3,10 +3,8 @@ package lesson10.tests;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-import com.codeborne.selenide.logevents.SelenideLogger;
 import static io.qameta.allure.Allure.step;
 import io.qameta.allure.Description;
-import io.qameta.allure.selenide.AllureSelenide;
 import lesson10.pages.RepositoryPage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -23,8 +21,6 @@ public class HomeworkIssueGitHubTests extends HomeworkAllureBaseTest {
   @DisplayName("Проверка, что есть наименование Issue в репозитории")
   @Description("1. Чистый Selenide (с Listener)")
   public void selenideHwTest() {
-    SelenideLogger.addListener("allure", new AllureSelenide());
-
     open(URL);
     $("#issues-tab").shouldHave(text("Issues"));
   }

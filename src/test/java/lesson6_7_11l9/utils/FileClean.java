@@ -1,17 +1,22 @@
 package lesson6_7_11l9.utils;
 
 import java.io.File;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class FileClean {
+    private static final Logger log = LoggerFactory.getLogger(CreateRandomData.class);
+
     public static void cleanTmpFolder() {
         String projectDir = System.getProperty("user.dir");
         File folder = new File(projectDir + "/src/test/resources/tmp");
 
         if (folder.exists() && folder.isDirectory()) {
             deleteRecursively(folder);
-            System.out.println("##### The tmp folder has been cleared and deleted");
+            LogUtils.logInfoMessage("Папка tmp была очищена и удалена",log);
+
         } else {
-            System.out.println("##### Folder tmp not found");
+            LogUtils.logInfoMessage("Папка tmp не найдена",log);
         }
     }
 
@@ -23,7 +28,7 @@ public class FileClean {
         }
         boolean deleted = file.delete();
         if (!deleted) {
-            System.out.println("##### Failed to delete: " + file.getAbsolutePath());
+            LogUtils.logInfoMessage("Не удалось удалить: " + file.getAbsolutePath(),log);
         }
     }
 }

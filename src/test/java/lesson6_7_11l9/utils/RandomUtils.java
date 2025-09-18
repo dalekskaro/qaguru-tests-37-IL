@@ -6,8 +6,12 @@ import java.nio.file.Paths;
 import java.security.SecureRandom;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class RandomUtils {
+    private static final Logger log = LoggerFactory.getLogger(CreateRandomData.class);
+
     public static void main(String[] args) {
         System.out.println(getRandomString(10));
         System.out.println(getRandomEmail());
@@ -62,7 +66,7 @@ public class RandomUtils {
 
         String randomValue = values.get(ThreadLocalRandom.current().nextInt(values.size()));
 
-        System.out.println("Random value: " + randomValue);
+        LogUtils.logInfoMessage("Рандомное значение из файла: " + randomValue, log);
         return randomValue;
     }
 }

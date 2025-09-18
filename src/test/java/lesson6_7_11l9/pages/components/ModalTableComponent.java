@@ -5,6 +5,9 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class ModalTableComponent {
 
@@ -13,6 +16,16 @@ public class ModalTableComponent {
 
   public void checkDataInSubmittingModalTable(String label, String value) {
     submittingModalTable.$(byText(label)).parent().shouldHave(text(value));
+  }
+
+  public void checkDateInSubmittingModalTable(String label, String birthDay) {
+    DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("d MMMM uuuu", Locale.ENGLISH);
+    LocalDate date = LocalDate.parse(birthDay, inputFormatter);
+
+    DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd MMMM,uuuu", Locale.ENGLISH);
+    String formatted = date.format(outputFormatter);
+
+    submittingModalTable.$(byText(label)).parent().shouldHave(text(formatted));
   }
 
   public void checkResultInSubmittingModalLabel(String value) {

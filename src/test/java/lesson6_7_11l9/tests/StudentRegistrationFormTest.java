@@ -15,7 +15,6 @@ import java.io.IOException;
 
 import static lesson6_7_11l9.utils.CreateRandomData.*;
 
-@Tag("homework-11")
 @Feature("Форма 'Student Registration Form'")
 public class StudentRegistrationFormTest extends BaseTest {
 
@@ -40,6 +39,7 @@ public class StudentRegistrationFormTest extends BaseTest {
   public StudentRegistrationFormTest() throws IOException {
   }
 
+  @Tag("homework-11")
   @Test
   @Story("Заполнение формы")
   @Owner("Irina Attano")
@@ -78,6 +78,7 @@ public class StudentRegistrationFormTest extends BaseTest {
         .checkResultInSubmittingModalTable("State and City", state + " " + city);
   }
 
+  @Tag("homework-11")
   @Test
   @Story("Заполнение формы")
   @Owner("Irina Attano")
@@ -101,6 +102,7 @@ public class StudentRegistrationFormTest extends BaseTest {
         .checkResultInSubmittingModalTable("Mobile", mobileNumber);
   }
 
+  @Tag("homework-11")
   @Test
   @Story("Подсветка обязательных полей")
   @Owner("Irina Attano")

@@ -26,6 +26,7 @@ public class StudentRegistrationFormTest extends BaseTest {
       email = getEmail(),
       gender = getGender(),
       mobileNumber = getMobileNumber(),
+      birthDay = getBirthDayAsString(),
       day = getDayAsString(),
       month = getMonthAsString(),
       year = getYearAsString(),
@@ -117,5 +118,30 @@ public class StudentRegistrationFormTest extends BaseTest {
         .checkColorOfGenderFemaleRadio("rgb(220, 53, 69)")
         .checkColorOfGenderOtherRadio("rgb(220, 53, 69)")
         .checkColorOfMobileNumberInput("rgb(220, 53, 69)");
+  }
+
+  @Test
+  @Story("Проверка альтернативного метода генерации даты")
+  @Owner("Irina Attano")
+  @Severity(SeverityLevel.MINOR)
+  @Link(value = "Testing url", url = "https://demoqa.com/automation-practice-form")
+  @DisplayName("Проверка работоспособности другого метода генерации даты рождения")
+  void fillRequiredFieldsAndBdayOnStudentRegistrationFormPositiveTest() {
+    studentRegistrationPage.openPage()
+        .removeAdd()
+        .setFirstName(firstName)
+        .setLastName(lastName)
+        .selectGender(gender)
+        .setMobileNumber(mobileNumber)
+        .setDateOfBirthWhenDayIsOneValue(birthDay)
+        .clickSubmitButton();
+
+    studentRegistrationPage.checkResultInSubmittingModalLabel("Thanks for submitting the form")
+        .checkResultInSubmittingModalTableThead("Label")
+        .checkResultInSubmittingModalTableThead("Values")
+        .checkResultInSubmittingModalTable("Student Name", firstName + " " + lastName)
+        .checkResultInSubmittingModalTable("Gender", gender)
+        .checkResultInSubmittingModalTable("Mobile", mobileNumber)
+        .checkResultWithDateInSubmittingModalTable("Date of Birth", birthDay);
   }
 }

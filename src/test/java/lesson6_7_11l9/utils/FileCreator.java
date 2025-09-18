@@ -5,31 +5,36 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class FileCreator {
 
-    public static File pngCreator(String fileName) throws IOException {
-        int width = 200;
-        int height = 100;
+  private static final Logger log = LoggerFactory.getLogger(CreateRandomData.class);
 
-        BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+  public static File pngCreator(String fileName) throws IOException {
+    int width = 200;
+    int height = 100;
 
-        Graphics2D g = image.createGraphics();
-        g.setColor(Color.WHITE);
-        g.fillRect(0, 0, width, height);
-        g.dispose();
+    BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
-        String projectDir = System.getProperty("user.dir");
-        File folder = new File(projectDir + "/src/test/resources/tmp");
+    Graphics2D g = image.createGraphics();
+    g.setColor(Color.WHITE);
+    g.fillRect(0, 0, width, height);
+    g.dispose();
 
-        if (!folder.exists()) {
-            boolean created = folder.mkdirs();
-            System.out.println("##### Folder created: " + created);
-        }
+    String projectDir = System.getProperty("user.dir");
+    File folder = new File(projectDir + "/src/test/resources/tmp");
 
-        File file = new File(folder,fileName + ".png");
-        ImageIO.write(image, "png", file);
-
-        return file.getAbsoluteFile();
+    if (!folder.exists()) {
+      boolean created = folder.mkdirs();
+      LogUtils.logInfoMessage("Папка создана: " + created, log);
     }
+
+    File file = new File(folder, fileName + ".png");
+    ImageIO.write(image, "png", file);
+    LogUtils.logInfoMessage("Создан png: " + file.getPath(), log);
+
+    return file.getAbsoluteFile();
+  }
 }

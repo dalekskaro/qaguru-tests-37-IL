@@ -84,10 +84,18 @@ public class StudentRegistrationPage {
     return this;
   }
 
-  @Step("В календаре выбираем дату рождения: {day} {month} {year}")
+  @Step("В календаре выбираем дату рождения: день {day}, месяц {month}, год {year}")
   public StudentRegistrationPage setDateOfBirth(String day, String month, String year) {
     dateOfBirthInput.click();
     calendarComponent.setDate(day, month, year);
+
+    return this;
+  }
+
+  @Step("В календаре выбираем дату рождения (одно значение): {birthDay}")
+  public StudentRegistrationPage setDateOfBirthWhenDayIsOneValue(String birthDay) {
+    dateOfBirthInput.click();
+    calendarComponent.setDateWhenOneValue(birthDay);
 
     return this;
   }
@@ -161,6 +169,13 @@ public class StudentRegistrationPage {
   @Step("Проверяем, что в модальном окне в строке '{label}' записано значение '{value}'")
   public StudentRegistrationPage checkResultInSubmittingModalTable(String label, String value) {
     modalTableComponent.checkDataInSubmittingModalTable(label, value);
+
+    return this;
+  }
+
+  @Step("Проверяем, что в модальном окне в строке '{label}' записано значение с датой '{value}'")
+  public StudentRegistrationPage checkResultWithDateInSubmittingModalTable(String label, String value) {
+    modalTableComponent.checkDateInSubmittingModalTable(label, value);
 
     return this;
   }

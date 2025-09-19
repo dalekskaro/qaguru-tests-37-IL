@@ -11,6 +11,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 public abstract class BaseTest {
@@ -19,18 +20,28 @@ public abstract class BaseTest {
   @Step("Устанавливаем настройки браузера")
   static void setUpBrowser() {
     Configuration.baseUrl = "https://demoqa.com";
-    Configuration.browserSize = "1920x1080";
+    Configuration.browser = System.getProperty("browser");
+    Configuration.browserVersion = System.getProperty("browserVersion");
+    Configuration.browserSize = System.getProperty("browserResolution", "1920x1080");
     Configuration.pageLoadStrategy = "eager";
 
-    Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+    Configuration.remote = System.getProperty("remote");
+  }
 
+  @BeforeAll
+  @Step("Добавляем возможность записи видео")
+  static void setVideo() {
     DesiredCapabilities capabilities = new DesiredCapabilities();
     capabilities.setCapability("selenoid:options", Map.<String, Object>of(
         "enableVNC", true,
         "enableVideo", true
     ));
     Configuration.browserCapabilities = capabilities;
+  }
 
+  @BeforeEach
+  @Step("Добавляем Allure Listener")
+  void addListenerAllure() {
     SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
   }
 
@@ -49,10 +60,10 @@ public abstract class BaseTest {
   @AfterEach
   @Step("Добавляем вложения в отчет")
   void addAttachments() {
-    Attach.screenshotAs("Последний скрин страницы");
-    Attach.pageSnapshot();
-    Attach.pageSource();
-    Attach.browserConsoleLogs();
-    Attach.addVideo();
+    Attach.screenshotAs("Скрин страницы");
+    Attach.pageSnapshot("Снапшот страницы");
+    Attach.pageSource("Source страницы");
+    Attach.browserConsoleLogs("Логи браузера");
+    Attach.addVideo("Видео всего теста");
   }
 }

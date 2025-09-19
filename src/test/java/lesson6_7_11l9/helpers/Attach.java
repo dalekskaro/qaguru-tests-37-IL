@@ -18,13 +18,13 @@ public class Attach {
     return ((TakesScreenshot) getWebDriver()).getScreenshotAs(OutputType.BYTES);
   }
 
-  @Attachment(value = "Page source", type = "text/plain")
-  public static byte[] pageSource() {
+  @Attachment(value = "{attachName}", type = "text/plain")
+  public static byte[] pageSource(String attachName) {
     return getWebDriver().getPageSource().getBytes(StandardCharsets.UTF_8);
   }
 
-  @Attachment(value = "Page snapshot", type = "text/html", fileExtension = "html")
-  public static byte[] pageSnapshot() {
+  @Attachment(value = "{attachName}", type = "text/html", fileExtension = "html")
+  public static byte[] pageSnapshot(String attachName) {
     return getWebDriver().getPageSource().getBytes(StandardCharsets.UTF_8);
   }
 
@@ -33,15 +33,15 @@ public class Attach {
     return message;
   }
 
-  public static void browserConsoleLogs() {
+  public static void browserConsoleLogs(String attachName) {
     attachAsText(
-        "Browser console logs",
+        attachName,
         String.join("\n", Selenide.getWebDriverLogs(BROWSER))
     );
   }
 
-  @Attachment(value = "Video", type = "text/html", fileExtension = ".html")
-  public static String addVideo() {
+  @Attachment(value = "{attachName}", type = "text/html", fileExtension = ".html")
+  public static String addVideo(String attachName) {
     return "<html><body><video width='100%' height='100%' controls autoplay><source src='"
         + getVideoUrl()
         + "' type='video/mp4'></video></body></html>";

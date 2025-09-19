@@ -38,8 +38,16 @@ dependencies {
     )
 }
 
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
+tasks.withType(Test) {
+    useJUnitPlatform()
+    systemProperties(System.getProperties())
+
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
 }
 
 test {
@@ -60,41 +68,14 @@ allure {
     }
 }
 
-tasks.register('homework-8', Test) {
-    testLogging {
-        events "passed", "skipped", "failed", "standardOut", "standardError"
-        exceptionFormat "full"
-    }
-    useJUnitPlatform {
-        includeTags("homework-8")
-    }
-}
-
-tasks.register('homework-9', Test) {
-    testLogging {
-        events "passed", "skipped", "failed", "standardOut", "standardError"
-        exceptionFormat "full"
-    }
-    useJUnitPlatform {
-        includeTags("homework-9")
-    }
-}
-
-tasks.register('homework-10', Test) {
-    testLogging {
-        events "passed", "skipped", "failed", "standardOut", "standardError"
-        exceptionFormat "full"
-    }
-    useJUnitPlatform {
-        includeTags("homework-10")
-    }
-}
-
 tasks.register('homework-11', Test) {
-    testLogging {
-        events "passed", "skipped", "failed", "standardOut", "standardError"
-        exceptionFormat "full"
+    useJUnitPlatform {
+        includeTags("homework-11")
     }
+}
+
+task test_for_jenkins(type: Test) {
+    systemProperties(System.getProperties())
     useJUnitPlatform {
         includeTags("homework-11")
     }

@@ -61,9 +61,9 @@ public abstract class BaseTest {
   @Step("Добавляем вложения в отчет")
   void addAttachments() {
     Attach.screenshotAs("Скрин страницы");
+    Attach.addVideo("Видео всего теста");
     Attach.pageSnapshot("Снапшот страницы");
     Attach.pageSource("Source страницы");
     Attach.browserConsoleLogs("Логи браузера");
-    Attach.addVideo("Видео всего теста");
   }
 }

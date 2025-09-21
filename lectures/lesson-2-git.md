@@ -1,79 +1,79 @@
 ## Урок 2: Git
 
 Увидеть локальные настройки:
-```html
+```bash
 git config --list --local
 git config --local user.name
 git config --local user.email
 ```
 Задать настройки локально (для одного проекта)
-```html
+```bash
 git config --local user.name "__"
 git config --local user.email "__"
 ```
 Увидеть глобальные настройки (для всех проектов):
-```html
+```bash
 git config --list –global
 ```
 Инициализация проекта
-```html
+```bash
 git init
 ```
 Посмотреть, какие проекты добавлены в гит
-```html
+```bash
 git status
 ```
 Добавить файл в гит
-```html
+```bash
 git add *файл*
 ```
-Добавить все файлы в гит, с учетом .gitignore
-```html
+Добавить все файлы в гит, с учетом `.gitignore`
+```bash
 git add .
 ```
 Убрать файл из гита
-```html
+```bash
 git rm --cached *файл*
 ```
 Сделать коммит, -m - сообщение
-```html
+```bash
 git commit -m "сообщение"
 ```
 Изменить последний коммит
-```html
+```bash
 git commit --amend -m "Новое название"
 ```
 **Как сделать так, чтобы привязать уже сущствующий репозиторий в GitHub и локальный проект?**
 1. Идешь в GitHub и создаешь проект, где Repository name = имени локального проекта
 2. GitHub сам даст следующую комадну, она привяжет локальный и remote репозитории
-```html
+```bash
 git remote add origin git@github.com:dalekskaro/try_git_qa_guru_37.git
 ```
 Пуш коммита в мастер: (-u = upstream = нужен для самого первого пуша)
-```html
+```bash
 git push -u origin master
 ```
 Посмотреть все ветки
-```html
+```bash
 git branch
 ```
 Создать новую ветку, где new-branch = название ветки
-```html
+```bash
 git branch new-branch
 ```
 Переключиться на ветку, где new-branch = название ветки
-```html
+```bash
 git checkout new-branch
 ```
 **Пошагово как через консоль закомитить и запушить все свои изменения:**
-```html
+```bash
 Делаешь изменения в коде
 git add .
 git commit -m "add 3 search tests"
 git push -u origin new-branch
 ```
 Обновить текущую ветку
-```html
+```bash
 git pull
 ```
 **Решение конфликта:**

@@ -15,6 +15,10 @@
 Доработать свой код:
 1. Передать из дженкинса адрес удаленного браузера (selenoid)
 2. Сделать возможность выбора браузера, версии и разрешения из сборки дженкинс 
+### Запуск локально при помощи переменных:
+```bash
+./gradlew clean test_for_jenkins -Dremote=https://ССЫЛКА_НА_СЕЛЕНОЙД -Dbrowser=chrome -DbrowserVersion=128.0 -DbrowserResolution=1280×720
+```
 
 ## Урок 13 (11): Telegram-бот. Отправляем уведомления о результатах прохождении автотестов
 1. Практика: Постобработка сборки. Настраиваем отправку уведомлений в Jenkins
@@ -28,3 +32,54 @@
 - ссылку на git-репозиторий.  
 - ссылку на job в Jenkins.  
 - скриншот из телеграм-чата с нотификацией.  
+
+### Настройка для отправки соо в тг:
+1. Создаешь бота и канал, куда добавляешь бота как админа
+2. В браузере открываешь: https://api.telegram.org/bot{{TELEGRAM_BOT_TOKEN}}/getUpdates и берешь айди канала. Для этого в канал должно быть отправлено сообщение
+3. Курл для проверки, может ли бот отправлять сообщения:
+Шаблон
+```bash
+curl -X POST \
+     -H 'Content-Type: application/json' \
+     -d '{"chat_id": "123456789", "text": "This is a test from curl", "disable_notification": true}' \
+     https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage
+```
+Работает у меня:
+```bash
+curl --location 'https://api.telegram.org/bot{{TELEGRAM_BOT_TOKEN}}/sendMessage' \
+--header 'Content-Type: application/json' \
+--data '{
+"chat_id": "{{айди чата}}",
+"text": "hello from postman",
+"disable_notification": true
+}'
+```
+### Отправка сообщения в тг локально:
+1. Скачиваешь [allure-notifications-4.11.0.jar](https://github.com/qa-guru/allure-notifications)
+2. Кидаешь в папку `notifications` в корне проекта
+3. Там же создаешь `config.json`  
+   Про `allureFolder`: Чтобы он появился надо выполнить `allureServe` и скопировать путь к отчету, он будет в `run` в виде `/var/folders/s1/ЧТО-ТО_НЕПОНЯТНОЕ/T/КУЧА_ЦИФР/allure-report`
+```json
+{
+  "base": {
+    "project": "наименование проекта",
+    "environment": "окружение, будет в сообщении как 'Рабочее окружение: demoqa'",
+    "comment": "локальный коммент",
+    "reportLink": "ссылка на то, где можно посмотреть отчет",
+    "language": "язык сообщения",
+    "allureFolder": "ссылка на папку с отчетом",
+    "enableChart": true
+  },
+  "telegram": {
+    "token": "токен бота",
+    "chat": "токен канала",
+    "replyTo": ""
+  }
+}
+```
+4. Делаешь команду:
+```bash
+java "-DconfigFile=notifications/config.json" -jar ./notifications/allure-notifications-4.11.0.jar
+```
+5. Готово, сообщение в канал отправлено
+### Отправка сообщения в тг через Jenkins:
